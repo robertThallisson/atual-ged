@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.atualged.model.Socios;
+import com.atualged.model.Socio;
 import com.atualged.repository.SociosRepository;
 
 @Service
@@ -14,8 +14,8 @@ public class SociosService {
 	@Autowired
 	private SociosRepository sociosRepository;
 	
-	public Socios atualizar(Long id, Socios socios) {
-		Socios sociosSalvo = sociosRepository.findById(id).get();
+	public Socio atualizar(Long id, Socio socios) {
+		Socio sociosSalvo = sociosRepository.findById(id).get();
 		if (sociosSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -25,13 +25,13 @@ public class SociosService {
 	}
 
 	public void atualizarPropriedadeAtivo(Long id, Boolean ativo) {
-		Socios sociosSalvo = buscarSociosPeloCodigo(id);
+		Socio sociosSalvo = buscarSociosPeloCodigo(id);
 		sociosSalvo.setAtivo(ativo);
 		sociosRepository.save(sociosSalvo);
 	}
 	
-	private Socios buscarSociosPeloCodigo(Long id) {
-		Socios sociosSalvo = sociosRepository.findById(id).get();
+	private Socio buscarSociosPeloCodigo(Long id) {
+		Socio sociosSalvo = sociosRepository.findById(id).get();
 		if (sociosSalvo == null) {
 			throw new EmptyResultDataAccessException(1);
 		}

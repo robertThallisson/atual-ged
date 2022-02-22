@@ -31,9 +31,11 @@ public class Notas {
 	private int tipo;
 	@NotNull
 	private float valorTotal;
-	@JsonDeserialize(using = LocalDateDeserializer.class) @JsonFormat(pattern="dd/MM/yyyy")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dtEmissao;
-	@JsonDeserialize(using = LocalDateDeserializer.class) @JsonFormat(pattern="dd/MM/yyyy")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dtSaida;
 	@NotNull
 	private int tipoOperacao;
@@ -56,96 +58,6 @@ public class Notas {
 	@JoinColumn(name = "empresa_id")
 	@JsonBackReference
 	private Empresa empresa;
-	public long getId() {
-		return id;
-	}
-	public int getNumero() {
-		return numero;
-	}
-	public int getSerie() {
-		return serie;
-	}
-	public int getTipo() {
-		return tipo;
-	}
-	public float getValorTotal() {
-		return valorTotal;
-	}
-	public LocalDate getDtEmissao() {
-		return dtEmissao;
-	}
-	public LocalDate getDtSaida() {
-		return dtSaida;
-	}
-	public int getTipoOperacao() {
-		return tipoOperacao;
-	}
-	public int getFinalidadeOperacao() {
-		return finalidadeOperacao;
-	}
-	public int getCnpjForn() {
-		return cnpjForn;
-	}
-	public int getCnpjEmp() {
-		return cnpjEmp;
-	}
-	public String getXml() {
-		return xml;
-	}
-	public Boolean getAtivo() {
-		return ativo;
-	}
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-	public void setSerie(int serie) {
-		this.serie = serie;
-	}
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-	public void setValorTotal(float valorTotal) {
-		this.valorTotal = valorTotal;
-	}
-	public void setDtEmissao(LocalDate dtEmissao) {
-		this.dtEmissao = dtEmissao;
-	}
-	public void setDtSaida(LocalDate dtSaida) {
-		this.dtSaida = dtSaida;
-	}
-	public void setTipoOperacao(int tipoOperacao) {
-		this.tipoOperacao = tipoOperacao;
-	}
-	public void setFinalidadeOperacao(int finalidadeOperacao) {
-		this.finalidadeOperacao = finalidadeOperacao;
-	}
-	public void setCnpjForn(int cnpjForn) {
-		this.cnpjForn = cnpjForn;
-	}
-	public void setCnpjEmp(int cnpjEmp) {
-		this.cnpjEmp = cnpjEmp;
-	}
-	public void setXml(String xml) {
-		this.xml = xml;
-	}
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-	
 
+	
 }

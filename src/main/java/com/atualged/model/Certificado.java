@@ -6,19 +6,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "certificado")
+@Getter
+@Setter
 public class Certificado {
 
 	@Id
@@ -44,91 +47,14 @@ public class Certificado {
 	@NotNull
 	private Boolean ativo;
 	
+	private String senha;
+	
 	private byte arquivo[]; 
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name = "empresa_id")
+	
+	@OneToOne
 	private Empresa empresa;
 
-	public long getId() {
-		return id;
-	}
 
-	public String getIpo() {
-		return ipo;
-	}
-
-	public String getEmitido() {
-		return emitido;
-	}
-
-	public LocalDate getValidadeIni() {
-		return validadeIni;
-	}
-
-	public LocalDate getValidadeFim() {
-		return validadeFim;
-	}
-
-	public String getSerial() {
-		return serial;
-	}
-
-	public int getPin() {
-		return pin;
-	}
-
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public void setIpo(String ipo) {
-		this.ipo = ipo;
-	}
-
-	public void setEmitido(String emitido) {
-		this.emitido = emitido;
-	}
-
-	public void setValidadeIni(LocalDate validadeIni) {
-		this.validadeIni = validadeIni;
-	}
-
-	public void setValidadeFim(LocalDate validadeFim) {
-		this.validadeFim = validadeFim;
-	}
-
-	public void setSerial(String serial) {
-		this.serial = serial;
-	}
-
-	public void setPin(int pin) {
-		this.pin = pin;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-
-	public byte[] getArquivo() {
-		return arquivo;
-	}
-
-	public void setArquivo(byte[] arquivo) {
-		this.arquivo = arquivo;
-	}
 
 	@Override
 	public String toString() {

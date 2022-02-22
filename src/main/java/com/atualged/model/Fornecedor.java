@@ -9,14 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-@Table(name = "fornecedor")
+@Getter
+@Setter
 public class Fornecedor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,38 +44,6 @@ public class Fornecedor {
 	@JsonManagedReference
 	private List<Notas> notas;
 	
-	/***********Get_Set*********/
-	
-	public long getId() {
-		return Id;
-	}
-	public void setId(long id) {
-		Id = id;
-	}
-	public Boolean getAtivo() {
-		return ativo;
-	}
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-	public PessoaJuridica getPessoa_juridica() {
-		return pessoa_juridica;
-	}
-	public void setPessoa_juridica(PessoaJuridica pessoa_juridica) {
-		this.pessoa_juridica = pessoa_juridica;
-	}
-	public List<Notas> getNotas() {
-		return notas;
-	}
-	public void setNotas(List<Notas> notas) {
-		this.notas = notas;
-	}
 
 
 
