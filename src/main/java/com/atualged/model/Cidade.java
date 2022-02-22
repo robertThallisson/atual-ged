@@ -5,13 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Entity
-@Table(name = "cidade")
+@Getter
+@Setter
 public class Cidade {
 
 	@Id
@@ -22,6 +27,7 @@ public class Cidade {
 	private String nome;
 	@NotNull
 	private Long cep;
+	@JsonIgnore
 	@OneToOne
 	private Estado estado;
 	@NotNull
