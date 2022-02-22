@@ -24,7 +24,7 @@ public class PessoaJuridica {
     
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
 	@Size(min = 2, max = 180)
 	private String razao_soc;
@@ -32,7 +32,7 @@ public class PessoaJuridica {
 	@Size(min = 2, max = 180)
 	private String nome_fan;
 	@NotNull
-	private int cnpj;
+	private Long cnpj;
 	@NotNull
 	@Size(min = 2, max = 200)
 	private String logradouro;
@@ -40,7 +40,7 @@ public class PessoaJuridica {
 	@Size(min = 2, max = 100)
 	private String bairro;
 	@NotNull
-	private int numero;
+	private Long numero;
 	@NotNull
 	@Size(min = 2, max = 100)
 	private String complemento;

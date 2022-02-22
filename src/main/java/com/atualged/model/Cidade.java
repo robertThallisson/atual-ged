@@ -16,46 +16,17 @@ public class Cidade {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
 	@Size(min = 2, max = 80)
 	private String nome;
 	@NotNull
-	private int cep;
+	private Long cep;
 	@OneToOne
 	private Estado estado;
 	@NotNull
 	private Boolean ativo;
-	public long getId() {
-		return id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public int getCep() {
-		return cep;
-	}
-	public Estado getEstado() {
-		return estado;
-	}
-	public Boolean getAtivo() {
-		return ativo;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public void setCep(int cep) {
-		this.cep = cep;
-	}
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
+
 	
 	/***********Get_Set*********/
 	

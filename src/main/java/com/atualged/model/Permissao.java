@@ -17,7 +17,7 @@ public class Permissao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
 	@Size(min = 2, max = 180)
 	private String descricao;

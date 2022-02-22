@@ -20,7 +20,7 @@ public class Estado {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
 	@Size(min = 2, max = 2)
 	private String uf;

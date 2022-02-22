@@ -24,14 +24,14 @@ public class Socio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
 	@Size(min = 2, max = 180)
 	private String nome;
 	@NotNull
-	private int cpf;
+	private Long cpf;
 	@NotNull
-	private int rg;
+	private Long rg;
 	@NotNull
 	@Size(min = 2, max = 80)
 	private String orgEsp;

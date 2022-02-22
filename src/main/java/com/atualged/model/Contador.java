@@ -18,12 +18,12 @@ public class Contador {
     
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
 	@Size(min = 2, max = 200)
 	private String nome;
 	@NotNull
-	private int rg;
+	private Long rg;
 	@NotNull
 	@Size(min = 2, max = 14)
 	private String cpf;

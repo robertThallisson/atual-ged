@@ -1,4 +1,24 @@
 
+CREATE TABLE if not exists pessoa_juridica ( 
+ long_id  bigint    ,
+  razao_soc character varying     ,
+  nome_fan character varying     ,
+ int_id  bigint    ,
+  logradouro character varying     ,
+  bairro character varying     ,
+ int_id  bigint    ,
+  complemento character varying     ,
+  ativo boolean     ,
+ cidade_id  bigint    ,
+  dt_adesao  date     ,
+ CONSTRAINT fk_long FOREIGN KEY (long_id) REFERENCES long  (id)
+, CONSTRAINT fk_int FOREIGN KEY (int_id) REFERENCES int  (id)
+, CONSTRAINT fk_int FOREIGN KEY (int_id) REFERENCES int  (id)
+, CONSTRAINT fk_cidade FOREIGN KEY (cidade_id) REFERENCES cidade  (id)   
+ );
+
+
+
 create table certificado (
        id  bigserial not null,
         ativo boolean not null,

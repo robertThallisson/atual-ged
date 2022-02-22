@@ -25,13 +25,13 @@ import lombok.Setter;
 public class Nota {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
-	private int numero;
+	private Long numero;
 	@NotNull
-	private int serie;
+	private Long serie;
 	@NotNull
-	private int tipo;
+	private Long tipo;
 	@NotNull
 	private float valorTotal;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
@@ -41,13 +41,13 @@ public class Nota {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dtSaida;
 	@NotNull
-	private int tipoOperacao;
+	private Long tipoOperacao;
 	@NotNull
-	private int finalidadeOperacao;
+	private Long finalidadeOperacao;
 	@NotNull
-	private int cnpjForn;
+	private Long cnpjForn;
 	@NotNull
-	private int cnpjEmp;
+	private Long cnpjEmp;
 	@NotNull
 	@Size(min = 2, max = 280)
 	private String xml;

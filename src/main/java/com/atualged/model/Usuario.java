@@ -31,10 +31,10 @@ public class Usuario  implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final Long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotNull
 	@Size(min = 2, max = 180)
 	private String login;
@@ -59,13 +59,7 @@ public class Usuario  implements Serializable{
     private PerfilUsuario perfilUsuario;
 	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
