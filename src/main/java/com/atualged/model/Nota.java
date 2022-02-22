@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,9 +16,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-@Table(name = "notas")
-public class Notas {
+@Getter
+@Setter
+public class Nota {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;

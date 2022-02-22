@@ -2,8 +2,8 @@ package com.atualged.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.atualged.model.Notas;
+import com.atualged.model.Nota;
 
-public interface NotasRepository extends JpaRepository<Notas, Long>{
+public interface NotasRepository extends JpaRepository<Nota, Long>{
 
 }

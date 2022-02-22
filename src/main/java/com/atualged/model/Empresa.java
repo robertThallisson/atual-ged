@@ -44,7 +44,7 @@ public class Empresa {
 	@OneToMany()
 	@JoinColumn(updatable = false,name = "empresa_id")
 	@JsonManagedReference
-	private List<Notas> notas;
+	private List<Nota> notas;
 	
 	private String uf;
 	

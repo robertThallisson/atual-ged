@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.User;
 import com.atualged.model.Usuario;
 
 
-public class UserSistema extends User {
+public class UsuarioSistema extends User {
 	private Usuario usuario;
-	public UserSistema(Usuario usuario,
+	public UsuarioSistema(Usuario usuario,
 			Collection<? extends GrantedAuthority> authorities) {
 		
 		super(usuario.getEmail(), usuario.getSenha(), authorities);

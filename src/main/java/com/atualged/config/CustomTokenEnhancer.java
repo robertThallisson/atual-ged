@@ -12,14 +12,14 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
 import com.atualged.model.Usuario;
-import com.atualged.security.UserSistema;
+import com.atualged.security.UsuarioSistema;
 
 public class CustomTokenEnhancer implements TokenEnhancer {
 
 	@Override
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 		// TODO Auto-generated method stub
-		Usuario usuario = ((UserSistema) authentication.getPrincipal()).getUsuario();
+		Usuario usuario = ((UsuarioSistema) authentication.getPrincipal()).getUsuario();
 
 		Map<String, Object> addInfo = new HashMap<>();
 		addInfo.put("nome", usuario.getLogin());

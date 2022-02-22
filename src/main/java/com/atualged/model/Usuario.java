@@ -2,17 +2,12 @@ package com.atualged.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -60,10 +55,8 @@ public class Usuario  implements Serializable{
 	@OneToOne
 	private PessoaJuridica pessoa_juridica;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "permissao_usuario", joinColumns = { @JoinColumn(updatable = false,name = "usuario_id") }, inverseJoinColumns = {
-			@JoinColumn(updatable = false,name = "permissao_id") })
-	private List<Permissao> permissoes;
+	@OneToOne
+    private PerfilUsuario perfilUsuario;
 	
 
 	@Override

@@ -42,7 +42,7 @@ public class Fornecedor {
 	@OneToMany()
 	@JoinColumn(updatable = false,name = "fornecedor_id")
 	@JsonManagedReference
-	private List<Notas> notas;
+	private List<Nota> notas;
 	
 
 
