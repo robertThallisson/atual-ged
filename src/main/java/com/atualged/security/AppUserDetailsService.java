@@ -38,7 +38,13 @@ public class AppUserDetailsService implements UserDetailsService {
 			aux.setLogin("administrador");
 			aux.setSenha("{bcrypt}$2a$10$1XOX0SM3r/UU7hshlBp0GODwWi7IsfOcSPRGOhmBxICYnCSY0r8Ba");
 			
-			aux.setPerfilUsuario(pu.findById(1l).get());
+			try {
+				aux.setPerfilUsuario(pu.findById(1l).get());
+			} catch (Exception e) {
+				// TODO: handle exception
+				aux.setPerfilUsuario(null);
+			}
+			
 			//aux.getPerfilUsuario().setPermissoes(pr.findAll());
 			return new UsuarioSistema(aux, getPermissoes(aux));
 		}

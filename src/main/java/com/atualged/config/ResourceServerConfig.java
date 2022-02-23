@@ -22,5 +22,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public MethodSecurityExpressionHandler createExpressinHandler() {
 		return new OAuth2MethodSecurityExpressionHandler();
 	}
-
 }

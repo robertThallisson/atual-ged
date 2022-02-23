@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.atualged.model.PessoaJuridica;
+import com.atualged.model.Empresa;
 
 public class Ultilitarios {
 
@@ -29,9 +29,9 @@ public class Ultilitarios {
 
 	public static void toTypeScript() {
 
-		Field fields[] = PessoaJuridica.class.getDeclaredFields();
+		Field fields[] = Empresa.class.getDeclaredFields();
 
-		String name = PessoaJuridica.class.getSimpleName();
+		String name = Empresa.class.getSimpleName();
 		String script = "CREATE TABLE if not exists " + tratarNomeSql(name) + " ( \n";
 		String constrant = "";
 		for (Field field : fields) {

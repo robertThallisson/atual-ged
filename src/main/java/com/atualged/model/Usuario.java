@@ -31,7 +31,8 @@ public class Usuario  implements Serializable{
 	/**
 	 * 
 	 */
-	private static final Long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -49,11 +50,11 @@ public class Usuario  implements Serializable{
 	
 	@JsonDeserialize(using = LocalDateDeserializer.class) 
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private LocalDate Dt_bloqueio;
+	private LocalDate dataBloqueio;
 	@NotNull
 	private Boolean ativo;
 	@OneToOne
-	private PessoaJuridica pessoa_juridica;
+	private PessoaJuridica pessoaJuridica;
 	
 	@OneToOne
     private PerfilUsuario perfilUsuario;

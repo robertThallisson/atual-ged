@@ -1,5 +1,6 @@
 package com.atualged.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -20,17 +21,21 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class PessoaJuridica {
+public class PessoaJuridica implements Serializable{
     
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull
 	@Size(min = 2, max = 180)
-	private String razao_soc;
+	private String razaoSocial;
 	@NotNull
 	@Size(min = 2, max = 180)
-	private String nome_fan;
+	private String nomeFantasia;
 	@NotNull
 	private Long cnpj;
 	@NotNull
@@ -49,8 +54,9 @@ public class PessoaJuridica {
 	@OneToOne
 	private Cidade cidade;
 	
-	@JsonDeserialize(using = LocalDateDeserializer.class) @JsonFormat(pattern="dd/MM/yyyy")
-	private LocalDate dtAdesao;
+	@JsonDeserialize(using = LocalDateDeserializer.class) 
+	@JsonFormat(pattern="dd/MM/yyyy")
+	private LocalDate dataAdessao;
 	
 	/***********Get_Set*********/
 	
