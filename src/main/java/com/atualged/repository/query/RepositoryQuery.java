@@ -10,7 +10,8 @@ import com.atualged.repository.filter.Filtro;
 
 @NoRepositoryBean
 public interface RepositoryQuery<T extends Object> {
-	public List<T> filtar(Filtro filtro);
-	public Page<T> filtar(Filtro filtro,Pageable pageable);
-	
+	public List<T> filtrar(Filtro filtro);
+	public Page<T> filtrar(Filtro filtro,Pageable pageable);
+	public List<T> filtrarNativo(Filtro filtro);
+	public List<T> getList(Object... args);
 }

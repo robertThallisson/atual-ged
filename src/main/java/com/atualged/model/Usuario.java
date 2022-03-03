@@ -54,7 +54,7 @@ public class Usuario  implements Serializable{
 	@NotNull
 	private Boolean ativo;
 	@OneToOne
-	private PessoaJuridica pessoaJuridica;
+	private Pessoa pessoa;
 	
 	@OneToOne
     private PerfilUsuario perfilUsuario;

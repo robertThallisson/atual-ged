@@ -15,13 +15,13 @@ public class UsuarioRepositoryImpl extends RepositoryImpl<Usuario> {
 		super();
 	}
 	@Override
-	public List<Usuario> filtar(Filtro filtro) {
+	public List<Usuario> filtrar(Filtro filtro) {
 		// TODO Auto-generated method stub
-		return super.filtar(filtro);
+		return super.filtrar(filtro);
 	}
 	@Override
-	public Page<Usuario> filtar(Filtro filtro, Pageable pageable) {
+	public Page<Usuario> filtrar(Filtro filtro, Pageable pageable) {
 		// TODO Auto-generated method stub
-		return super.filtar(filtro, pageable);
+		return super.filtrar(filtro, pageable);
 	}
 }

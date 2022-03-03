@@ -27,11 +27,20 @@ public class Cidade {
 	private String nome;
 	@NotNull
 	private Long cep;
+	
+	private String codigoIbge;
 	@JsonIgnore
 	@OneToOne
 	private Estado estado;
 	@NotNull
 	private Boolean ativo;
+	
+	
+	
+	private String populacao_2010;
+	private Float densidade_demo ;
+	private String gentilico ;
+	private Float area ;
 
 	
 	/***********Get_Set*********/

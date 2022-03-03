@@ -1,4 +1,4 @@
-package com.atualged.resource;
+package com.atualged.resources;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;

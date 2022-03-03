@@ -1,7 +1,6 @@
 package com.atualged.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -54,9 +49,10 @@ public class PessoaJuridica implements Serializable{
 	@OneToOne
 	private Cidade cidade;
 	
-	@JsonDeserialize(using = LocalDateDeserializer.class) 
-	@JsonFormat(pattern="dd/MM/yyyy")
-	private LocalDate dataAdessao;
+
+	
+	
+	private byte[] foto;
 	
 	/***********Get_Set*********/
 	
