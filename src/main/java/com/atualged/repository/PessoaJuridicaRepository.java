@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.atualged.model.PessoaJuridica;
 
-public interface Pessoa_juridicaRepository extends JpaRepository<PessoaJuridica, Long>{
+public interface PessoaJuridicaRepository extends JpaRepository<PessoaJuridica, Long>{
 
 	
 }

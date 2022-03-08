@@ -1,6 +1,6 @@
 package com.atualged.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,17 +11,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Empresa {
+public class Empresa implements Serializable{
+    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +34,9 @@ public class Empresa {
 	@OneToOne
 	private PessoaJuridica pessoaJuridica;
 	
-	@JsonDeserialize(using = LocalDateDeserializer.class) 
-	@JsonFormat(pattern="dd/MM/yyyy")
-	private LocalDate dataAdessao;
+//	@JsonDeserialize(using = LocalDateDeserializer.class) 
+//	@JsonFormat(pattern="dd/MM/yyyy")
+//	private LocalDate dataAdessao;
 	
 	@Transient
 	private List<Socio> socios;
@@ -44,5 +45,7 @@ public class Empresa {
 	private List<Nota> notas;
 	
 	private String uf;
+	
+
 	
 }

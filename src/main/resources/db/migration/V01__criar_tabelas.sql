@@ -28,6 +28,7 @@ CREATE TABLE if not exists permissao (
  id bigserial    ,
   descricao character varying     ,
   ativo boolean     ,
+  visivel boolean ,
  CONSTRAINT pk_permissao PRIMARY KEY (id)    
  );
 
@@ -36,14 +37,14 @@ CREATE TABLE if not exists pessoa_juridica (
  id bigserial    ,
   razao_social character varying     ,
   nome_fantasia character varying     ,
-  cnpj bigint    ,
+  cnpj character varying    ,
   logradouro character varying     ,
   bairro character varying     ,
-  numero bigint    ,
+  numero character varying     ,
   complemento character varying     ,
   ativo boolean     ,
  cidade_id  bigint    ,
-
+foto bytea,
  CONSTRAINT pk_pessoa_juridica PRIMARY KEY (id) 
 , CONSTRAINT fk_cidade FOREIGN KEY (cidade_id) REFERENCES cidade  (id)   
  );
@@ -59,7 +60,21 @@ CREATE TABLE if not exists empresa (
  );
 
 
- CREATE TABLE if not exists pessoa ( 
+
+CREATE TABLE if not exists escritorio ( 
+ id bigserial    ,
+  ativo boolean     ,
+ pessoa_juridica_id  bigint    ,
+  valor_base numeric(15, 2)      ,
+  valor_por_cliente numeric(15, 2)      ,
+  base_cliente numeric(15, 2)      ,
+  data_adessao date,
+ CONSTRAINT pk_escritorio PRIMARY KEY (id) 
+, CONSTRAINT fk_pessoa_juridica FOREIGN KEY (pessoa_juridica_id) REFERENCES pessoa_juridica  (id)   
+ );
+
+
+  CREATE TABLE if not exists pessoa ( 
  id bigserial    ,
   nome character varying     ,
   cpf character varying     ,
@@ -70,17 +85,17 @@ CREATE TABLE if not exists empresa (
   numero character varying     ,
   complemento character varying     ,
   bairro character varying     ,
-  cidade character varying     ,
+  cidade_id  bigint    ,
   cep character varying     ,
   uf character varying     ,
   estado character varying     ,
   foto  bytea     ,
   ativo boolean     ,
- empresa_id  bigint    ,
+ escritorio_id  bigint    ,
  CONSTRAINT pk_pessoa PRIMARY KEY (id) 
-    , CONSTRAINT fk_empresa FOREIGN KEY (empresa_id) REFERENCES empresa  (id)   
+    , CONSTRAINT fk_escritorio FOREIGN KEY (escritorio_id) REFERENCES escritorio  (id)  
+    , CONSTRAINT fk_cidade FOREIGN KEY (cidade_id) REFERENCES cidade  (id)    
 );
-
 
 
 CREATE TABLE if not exists perfil_usuario ( 
@@ -88,7 +103,7 @@ CREATE TABLE if not exists perfil_usuario (
   nome character varying     ,
  empresa_id  bigint    ,
  CONSTRAINT pk_perfil_usuario PRIMARY KEY (id) 
---, CONSTRAINT fk_empresa FOREIGN KEY (empresa_id) REFERENCES empresa  (id)   
+, CONSTRAINT fk_empresa FOREIGN KEY (empresa_id) REFERENCES empresa  (id)   
  );
 
 
@@ -106,11 +121,12 @@ CREATE TABLE if not exists perfil_usuario (
 , CONSTRAINT fk_perfil_usuario FOREIGN KEY (perfil_usuario_id) REFERENCES perfil_usuario  (id)   
  );
 
-CREATE TABLE if not exists escritorio ( 
- id bigserial    ,
-  ativo boolean     ,
- pessoa_juridica_id  bigint    ,
- data_adessao  date     ,
- CONSTRAINT pk_escritorio PRIMARY KEY (id) 
-, CONSTRAINT fk_pessoa_juridica FOREIGN KEY (pessoa_juridica_id) REFERENCES pessoa_juridica  (id)   
- );
+
+
+
+create table permissao_perfil_usuario (
+       perfil_usuario_id int8 not null,
+        permissao_id int8 not null,
+        constraint fk_permissao foreign key (permissao_id) references permissao (id)   ,
+       constraint fk_perfil_usuario foreign key (perfil_usuario_id) references perfil_usuario (id)   
+    );

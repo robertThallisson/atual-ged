@@ -18,18 +18,17 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Pessoa  implements Serializable{
-	
+public class Pessoa implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +36,7 @@ public class Pessoa  implements Serializable{
 	@Size(min = 2, max = 100)
 	@NotBlank(message = "campo obrigatório")
 	@Column
-	private String nome;	
+	private String nome;
 	@CPF
 	@Size(max = 18)
 	@NotBlank(message = "campo obrigatório")
@@ -64,12 +63,12 @@ public class Pessoa  implements Serializable{
 	@Size(max = 80)
 	@Column
 	private String bairro;
-	@Size(max = 80)
-	@Column
-	private String cidade;
+
+	@OneToOne
+	private Cidade cidade;
 	@Size(max = 20)
 	@Column
-	private String cep;	
+	private String cep;
 	@Size(max = 2)
 	@Column
 	private String uf;
@@ -80,8 +79,8 @@ public class Pessoa  implements Serializable{
 	private byte[] foto;
 	@NotNull
 	@Column
-    private Boolean ativo;
+	private Boolean ativo;
 	@OneToOne
-	private Empresa empresa;
+	private Escritorio escritorio;
 
 }

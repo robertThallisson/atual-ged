@@ -29,6 +29,7 @@ public class Permissao implements Serializable{
 	private String descricao;
 	@NotNull
 	private Boolean ativo;
+	private Boolean visivel;
 	
 	
 	

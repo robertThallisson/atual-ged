@@ -32,19 +32,19 @@ public class PessoaJuridica implements Serializable{
 	@Size(min = 2, max = 180)
 	private String nomeFantasia;
 	@NotNull
-	private Long cnpj;
-	@NotNull
+	private String cnpj;
+	
 	@Size(min = 2, max = 200)
 	private String logradouro;
-	@NotNull
+	
 	@Size(min = 2, max = 100)
 	private String bairro;
-	@NotNull
-	private Long numero;
-	@NotNull
+	
+	private String numero;
+	
 	@Size(min = 2, max = 100)
 	private String complemento;
-	@NotNull
+	
 	private Boolean ativo;
 	@OneToOne
 	private Cidade cidade;

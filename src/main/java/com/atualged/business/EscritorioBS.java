@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;         
 import java.util.List;       
          
-import com.atualged.repository.EscritorioRepository ;   
+import com.atualged.repository.EscritorioRepository ;
+import com.atualged.repository.PessoaJuridicaRepository;
 import com.atualged.model.Escritorio;   
 import com.atualged.repository.filter.Filtro;         
          
@@ -13,7 +14,13 @@ public class EscritorioBS       {
 	@Autowired         
 	EscritorioRepository escritorioRepository; 
           
+	@Autowired
+	PessoaJuridicaRepository juridicaRepository;
 	public Escritorio  salvar( Escritorio escritorio) {        
+		if (escritorio.getPessoaJuridica() != null || escritorio.getPessoaJuridica().getId() == null
+				|| escritorio.getPessoaJuridica().getId() <= 0) {
+			juridicaRepository.save(escritorio.getPessoaJuridica());
+		}
 		return    escritorioRepository.save(escritorio);   
 	}       
          

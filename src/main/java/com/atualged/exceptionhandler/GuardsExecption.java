@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.atualged.exception;
+package com.atualged.exceptionhandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +37,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.atualged.exception.AtualGedException;
+import com.atualged.exception.UsuariaInexistenteOuInativoException;
 
 
 /**

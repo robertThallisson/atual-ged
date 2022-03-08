@@ -2,6 +2,7 @@ package com.atualged.model;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,7 +13,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +41,16 @@ public class Escritorio implements Serializable{
 	
 	@Transient
 	private List<Contador> contador;
+	
+	
+	private Float valorBase;
+	private Float valorPorCliente;
+	private Float baseCliente;
 
+
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataAdessao;
 	
 	/***********equa_hash*********/
 	

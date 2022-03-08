@@ -5596,5 +5596,24 @@ INSERT INTO public.cidade(
 , (5558, 'Taipas Do Tocantins', 172093, 27, 1945, 1.74, 'taipense', 1116.199, true)
 , (5561, 'Tocantinópolis', 172120, 27, 22619, 21, 'tocantinopolino', 1077.069, true)
 , (5563, 'Tupiratins', 172130, 27, 2097, 2.34, 'tupiratinense', 895.305, true)
-, (5565, 'Xambioá', 172210, 27, 11484, 9.68, 'xambioaense', 1186.424, true)
+, (5565, 'Xambioá', 172210, 27, 11484, 9.68, 'xambioaense', 1186.424, true);
 
+
+INSERT INTO permissao( ativo, descricao, visivel)
+	VALUES ( true, 'empresa:salvar', false);
+	
+INSERT INTO permissao(ativo, descricao, visivel)
+	VALUES (true, 'empresa:pesquisar', false);
+
+INSERT INTO permissao( ativo, descricao, visivel)
+	VALUES ( true, 'usuario:salvar', false);
+	
+INSERT INTO permissao(ativo, descricao, visivel)
+	VALUES (true, 'usuario:pesquisar', false);
+
+INSERT INTO perfil_usuario( nome)
+	VALUES ('Administrador - Ultra');
+
+INSERT INTO permissao_perfil_usuario(
+	perfil_usuario_id, permissao_id)
+	select 1, id from permissao;
