@@ -9,6 +9,7 @@ import com.atualged.model.Empresa;
 import com.atualged.repository.EmpresaRepository;
 import com.atualged.repository.PessoaJuridicaRepository;
 import com.atualged.repository.filter.Filtro;
+import com.atualged.util.AtualGedUtil;
 
 @Service
 public class EmpresaBS {
@@ -20,8 +21,7 @@ public class EmpresaBS {
 
 	public Empresa salvar(Empresa empresa) {
 
-		if (empresa.getPessoaJuridica() != null || empresa.getPessoaJuridica().getId() == null
-				|| empresa.getPessoaJuridica().getId() <= 0) {
+		if (empresa.getPessoaJuridica() != null ) {
 			juridicaRepository.save(empresa.getPessoaJuridica());
 		}
 		return empresaRepository.save(empresa);
@@ -30,15 +30,14 @@ public class EmpresaBS {
 	public List<Empresa> pesquisar(String value) {
 
 		if ((value == null) || (value.trim().equals("")) || value.trim().equals(" ") || value.trim().equals("+=")) {
-			return null;// empresaRepository.findByAtivoIsTrueAndEmpresa(empresaBean.getEmpresa());
+			return empresaRepository.findByPessoaJuridicaRazaoSocialContainingIgnoreCaseAndEscritorio(value, AtualGedUtil.getEscritorioTokenRequest());
 		} else {
-			return null;// empresaRepository.ContainingIgnoreCaseAndEmpresa(value,
-						// empresaBean.getEmpresa());
+			return empresaRepository.findByEscritorio(AtualGedUtil.getEscritorioTokenRequest());
 		}
 	}
 
 	public List<Empresa> pesquisarUltimosRegistros() {
-		return null;// empresaRepository.AndEmpresaOrderByIdDesc(empresaBean.getEmpresa());
+		return empresaRepository.findTop50ByEscritorioOrderByIdDesc(AtualGedUtil.getEscritorioTokenRequest());
 	}
 
 	public List<Empresa> filtrar(Filtro filtro) {

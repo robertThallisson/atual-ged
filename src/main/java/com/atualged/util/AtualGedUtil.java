@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.authentication.OAuth2Authent
 import org.springframework.util.StreamUtils;
 
 import com.atualged.exception.AtualGedException;
-import com.atualged.model.Empresa;
+import com.atualged.model.Escritorio;
 import com.atualged.model.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -57,9 +57,9 @@ public class AtualGedUtil {
 		
 	}
 
-	public static Empresa getEmpresaTokenRequest() {
+	public static Escritorio getEscritorioTokenRequest() {
 		 try {
-			return new ObjectMapper().readValue(decodeTokenRequest("empresa").toString(), Empresa.class);
+			return new ObjectMapper().readValue(decodeTokenRequest("escritorio").toString(), Escritorio.class);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

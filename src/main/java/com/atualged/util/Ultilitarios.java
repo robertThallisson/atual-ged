@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.atualged.model.Escritorio;
+import com.atualged.model.Empresa;
 
 public class Ultilitarios {
 
@@ -29,9 +29,9 @@ public class Ultilitarios {
 
 	public static void toTypeScript() {
 
-		Field fields[] = Escritorio.class.getDeclaredFields();
+		Field fields[] = Empresa.class.getDeclaredFields();
 
-		String name = Escritorio.class.getSimpleName();
+		String name = Empresa.class.getSimpleName();
 		String script = "CREATE TABLE if not exists " + tratarNomeSql(name) + " ( \n";
 		String constrant = "";
 		for (Field field : fields) {
@@ -128,5 +128,14 @@ public class Ultilitarios {
 				+ "VALUES\r\n" + "    ( true, '" + nome + ":salvar', true);");
 		System.out.println("INSERT INTO permissao\r\n" + "    (\r\n" + "    ativo, descricao, visivel)\r\n"
 				+ "VALUES\r\n" + "    ( true, '" + nome + ":pesquisar', true);");
+	}
+	
+	public static Integer convertToInteger(String valeu) {
+		try {
+			return Integer.valueOf(valeu);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return -1;
+		}
 	}
 }

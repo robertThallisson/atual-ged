@@ -1,24 +1,37 @@
 
+CREATE TABLE if not exists pais ( 
+ id bigserial    ,
+  nome character varying     ,
+  nome_pt character varying     ,
+  sigla character varying     ,
+  bacen bigint    ,
+ CONSTRAINT pk_pais PRIMARY KEY (id)    
+ );
+
+
 CREATE TABLE if not exists estado ( 
  id bigserial    ,
   uf character varying     ,
   nome character varying     ,
   ativo boolean     ,
- CONSTRAINT pk_estado PRIMARY KEY (id)    
+  ibge bigint    ,
+ pais_id  bigint    ,
+  ddd character varying     ,
+ CONSTRAINT pk_estado PRIMARY KEY (id) 
+, CONSTRAINT fk_pais FOREIGN KEY (pais_id) REFERENCES pais  (id)   
  );
-
 
 CREATE TABLE if not exists cidade ( 
  id bigserial    ,
   nome character varying     ,
   cep bigint    ,
-  codigo_ibge character varying     ,
+  ibge bigint    ,
  estado_id  bigint    ,
   ativo boolean     ,
-  populacao_2010 character varying     ,
-  densidade_demo numeric(15, 2)      ,
-  gentilico character varying     ,
-  area numeric(15, 2)      ,
+  lat_lon character varying     ,
+  latitude double precision      ,
+  longitude double precision      ,
+  cod_tom bigint    ,
  CONSTRAINT pk_cidade PRIMARY KEY (id) 
 , CONSTRAINT fk_estado FOREIGN KEY (estado_id) REFERENCES estado  (id)   
  );
@@ -38,6 +51,7 @@ CREATE TABLE if not exists pessoa_juridica (
   razao_social character varying     ,
   nome_fantasia character varying     ,
   cnpj character varying    ,
+  cep character varying    ,
   logradouro character varying     ,
   bairro character varying     ,
   numero character varying     ,
@@ -50,17 +64,6 @@ foto bytea,
  );
 
 
-CREATE TABLE if not exists empresa ( 
- id bigserial    ,
-  ativo boolean     ,
- pessoa_juridica_id  bigint    ,
-  uf character varying     ,
- CONSTRAINT pk_empresa PRIMARY KEY (id) 
-, CONSTRAINT fk_pessoa_juridica FOREIGN KEY (pessoa_juridica_id) REFERENCES pessoa_juridica  (id)   
- );
-
-
-
 CREATE TABLE if not exists escritorio ( 
  id bigserial    ,
   ativo boolean     ,
@@ -71,6 +74,18 @@ CREATE TABLE if not exists escritorio (
   data_adessao date,
  CONSTRAINT pk_escritorio PRIMARY KEY (id) 
 , CONSTRAINT fk_pessoa_juridica FOREIGN KEY (pessoa_juridica_id) REFERENCES pessoa_juridica  (id)   
+ );
+
+
+CREATE TABLE if not exists empresa ( 
+ id bigserial    ,
+  ativo boolean     ,
+ pessoa_juridica_id  bigint    ,
+ escritorio_id  bigint    ,
+  uf character varying     ,
+ CONSTRAINT pk_empresa PRIMARY KEY (id) 
+, CONSTRAINT fk_pessoa_juridica FOREIGN KEY (pessoa_juridica_id) REFERENCES pessoa_juridica  (id)
+, CONSTRAINT fk_escritorio FOREIGN KEY (escritorio_id) REFERENCES escritorio  (id)   
  );
 
 
@@ -101,9 +116,9 @@ CREATE TABLE if not exists escritorio (
 CREATE TABLE if not exists perfil_usuario ( 
  id bigserial    ,
   nome character varying     ,
- empresa_id  bigint    ,
+ escritorio_id  bigint    ,
  CONSTRAINT pk_perfil_usuario PRIMARY KEY (id) 
-, CONSTRAINT fk_empresa FOREIGN KEY (empresa_id) REFERENCES empresa  (id)   
+, CONSTRAINT fk_escritorio FOREIGN KEY (escritorio_id) REFERENCES escritorio  (id)   
  );
 
 

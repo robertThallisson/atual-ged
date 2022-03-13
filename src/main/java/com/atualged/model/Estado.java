@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,6 +35,15 @@ public class Estado implements Serializable{
 	private String nome;	
 	@NotNull
 	private Boolean ativo;
+	
+	
+	
+	private Integer ibge   ;
+	@OneToOne
+	private Pais  pais   ;
+	private String  ddd    ;
+	  
+	  
 	@Transient
 	private List<Cidade> cidade;
 

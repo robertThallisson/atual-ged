@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.atualged.model.Empresa;
+import com.atualged.model.Escritorio;
 import com.atualged.model.PerfilUsuario;
 
 public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, Long> {
@@ -34,8 +34,8 @@ public interface PerfilUsuarioRepository extends JpaRepository<PerfilUsuario, Lo
 	public void deletePerfilUsuario(@Param("p1") Long adm);
 	
 	
-	List<PerfilUsuario> findByNomeContainingAndEmpresaOrId(String nome, Empresa empresa,Long id);
-	List<PerfilUsuario> findByEmpresaOrId(Empresa empresa, Long id);
-	List<PerfilUsuario> findTop10ByEmpresaOrId(Empresa empresa, Long id);
-
+	List<PerfilUsuario> findByNomeContainingAndEscritorioOrId(String nome, Escritorio empresa,Long id);
+	List<PerfilUsuario> findByEscritorioOrId(Escritorio empresa, Long id);
+	List<PerfilUsuario> findTop10ByEscritorioOrId(Escritorio empresa, Long id);
+	List<PerfilUsuario>  findByEscritorioIsNull();
 }

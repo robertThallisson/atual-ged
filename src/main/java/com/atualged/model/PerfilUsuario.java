@@ -35,7 +35,7 @@ public class PerfilUsuario implements Serializable{
 	@NotBlank
 	private String nome;
 	@OneToOne
-	private Empresa empresa;
+	private Escritorio escritorio;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "permissao_perfil_usuario", joinColumns = {

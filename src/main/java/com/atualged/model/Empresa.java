@@ -34,6 +34,9 @@ public class Empresa implements Serializable{
 	@OneToOne
 	private PessoaJuridica pessoaJuridica;
 	
+	@OneToOne
+	private Escritorio escritorio;
+	
 //	@JsonDeserialize(using = LocalDateDeserializer.class) 
 //	@JsonFormat(pattern="dd/MM/yyyy")
 //	private LocalDate dataAdessao;

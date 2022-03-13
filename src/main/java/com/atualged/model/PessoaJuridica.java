@@ -34,6 +34,12 @@ public class PessoaJuridica implements Serializable{
 	@NotNull
 	private String cnpj;
 	
+	
+	
+	@Size(min = 2, max = 200)
+	private String cep;
+	
+	
 	@Size(min = 2, max = 200)
 	private String logradouro;
 	

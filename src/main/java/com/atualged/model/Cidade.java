@@ -28,7 +28,7 @@ public class Cidade {
 	@NotNull
 	private Long cep;
 	
-	private String codigoIbge;
+	private Integer ibge;
 	@JsonIgnore
 	@OneToOne
 	private Estado estado;
@@ -37,10 +37,10 @@ public class Cidade {
 	
 	
 	
-	private String populacao_2010;
-	private Float densidade_demo ;
-	private String gentilico ;
-	private Float area ;
+	private String latLon ;
+	private Float latitude  ;
+	private Float longitude  ;
+	private Integer codTom  ;
 
 	
 	/***********Get_Set*********/

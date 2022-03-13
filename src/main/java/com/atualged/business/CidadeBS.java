@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.atualged.model.Cidade;
 import com.atualged.repository.CidadeRepository;
 import com.atualged.repository.filter.Filtro;
+import com.atualged.util.Ultilitarios;
 
 @Service
 public class CidadeBS {
@@ -23,7 +24,7 @@ public class CidadeBS {
 		if ((value == null) || (value.trim().equals("")) || value.trim().equals(" ") || value.trim().equals("+=")) {
 			return cidadeRepository.findByAtivoIsTrue();
 		} else {
-			return cidadeRepository.findByNomeContainingIgnoreCaseOrCodigoIbge(value, value);
+			return cidadeRepository.findByNomeContainingIgnoreCaseOrIbge(value, Ultilitarios.convertToInteger(value) );
 		}
 	}
 

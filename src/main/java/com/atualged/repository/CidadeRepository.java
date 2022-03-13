@@ -9,7 +9,7 @@ import com.atualged.repository.query.RepositoryQuery;
  
  public interface CidadeRepository extends JpaRepository<Cidade, Long>  , RepositoryQuery<Cidade>    {
  	List<Cidade> findByAtivoIsTrue(); 
- 	List<Cidade> findByNomeContainingIgnoreCaseOrCodigoIbge(String value,String value2);
+ 	List<Cidade> findByNomeContainingIgnoreCaseOrIbge(String value,Integer value2);
  	List<Cidade> findTop50ByOrderByIdDesc();
   
   
