@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,10 +24,10 @@ public class Certificado {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
+	
 	@Size(min = 2, max = 2)
 	private String ipo;
-	@NotNull
+
 	@Size(min = 2, max = 80)
 	private String emitido;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
@@ -37,12 +36,12 @@ public class Certificado {
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate validadeFim;
-	@NotNull
+
 	@Size(min = 2, max = 280)
 	private String serial;
-	@NotNull
+
 	private Long pin;
-	@NotNull
+
 	private Boolean ativo;
 	
 	private String senha;

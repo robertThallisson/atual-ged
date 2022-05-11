@@ -44,6 +44,23 @@ public class AtualGedUtil {
 		}
 		
 	}
+	
+	public static String decodeTokenRequestString(String propiedade) {
+		OAuth2AuthenticationDetails teste = (OAuth2AuthenticationDetails) ((SecurityContext) SecurityContextHolder
+				.getContext()).getAuthentication().getDetails();
+
+		Jwt decode = JwtHelper.decode(teste.getTokenValue());
+		try {
+
+			JSONObject jb = new JSONObject(decode.getClaims().toString());
+			return jb.getString(propiedade);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+			throw new AtualGedException("falhar ao obter informações do usuario logado ", e.getMessage());
+		}
+
+	}
 
 	public static Usuario getUsuarioTokenRequest() {
 
@@ -68,6 +85,12 @@ public class AtualGedUtil {
 		
 	}
 	
+	public static boolean isAdimistrador() {
+		// TODO Auto-generated method stub
+		Object login = decodeTokenRequestString("login");
+		return login != null && (login.toString().toLowerCase().equals("admin")
+				|| login.toString().toLowerCase().equals("administrador"));
+	}
 	
 	public static String logoSigObra(InputStream in) throws IOException {
 		

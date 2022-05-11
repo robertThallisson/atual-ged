@@ -5902,10 +5902,11 @@ INSERT INTO permissao(ativo, descricao, visivel)
 	VALUES (true, 'usuario:pesquisar', false);
 
 INSERT INTO permissao( ativo, descricao, visivel)
-	VALUES ( true, 'empresa:salvar', false);
+	VALUES ( true, 'permissoes:salvar', false);
 	
 INSERT INTO permissao(ativo, descricao, visivel)
-	VALUES (true, 'empresa:pesquisar', false);
+	VALUES (true, 'permissoes:pesquisar', false);
+
 
 INSERT INTO perfil_usuario( nome)
 	VALUES ('Administrador - Ultra');

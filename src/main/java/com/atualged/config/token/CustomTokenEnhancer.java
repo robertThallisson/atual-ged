@@ -35,10 +35,10 @@ public class CustomTokenEnhancer implements TokenEnhancer {
 				}
 				addInfo.put("usuario", usuario);
 				
+				addInfo.put("login", usuario.getLogin());
+				
 				if (usuario.getPessoa() != null) {
-					addInfo.put("login", usuario.getPessoa().getNome());
-				}
-				if (usuario.getPessoa() != null) {
+					usuario.getPessoa().getEscritorio().setContador(null);
 					addInfo.put("escritorio", usuario.getPessoa().getEscritorio());
 				}
 				

@@ -1,4 +1,4 @@
-package com.atualged.Respostas;
+package com.atualged.respostas;
 public class TratarRespostaDFe {
 	
 }

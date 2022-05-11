@@ -1,5 +1,6 @@
-package com.atualged.business.nf;
+package com.atualged.config.dfe;
 
+import org.springframework.stereotype.Service;
 
 import com.atualged.model.Empresa;
 
@@ -10,13 +11,14 @@ import br.com.swconsultoria.nfe.dom.ConfiguracoesNfe;
 import br.com.swconsultoria.nfe.dom.enuns.AmbienteEnum;
 import br.com.swconsultoria.nfe.dom.enuns.EstadosEnum;
 
+@Service
 public class ConfiguraDFe {
 	public static ConfiguracoesNfe iniciaConfigurações(Empresa empresa, Certificado certificado) throws Exception {
 		// Certificado certificado =
 		// https://github.com/Samuel-Oliveira/Java_Certificado/wiki
 
-		return ConfiguracoesNfe.criarConfiguracoes(getEnumEstado(empresa), AmbienteEnum.HOMOLOGACAO, certificado,
-				"/schemas");
+		return ConfiguracoesNfe.criarConfiguracoes(getEnumEstado(empresa), AmbienteEnum.PRODUCAO, certificado,
+				"C:\\Users\\rober\\Documents\\GitHub\\AtualGed\\src\\main\\resources\\schemas");
 	}
 	
 	public static ConfiguracoesNfe iniciaConfigurações(Empresa empresa, com.atualged.model.Certificado certificado) throws Exception {
@@ -46,7 +48,7 @@ public class ConfiguraDFe {
 	}
 
 	public static EstadosEnum getEnumEstado(Empresa empresa) {
-		switch (empresa.getUf().toUpperCase()) {
+		switch ((empresa.getUf()  != null ? empresa.getUf() : "GO" ).toUpperCase()) {
 		case "GO": {
 			return EstadosEnum.GO;
 		}

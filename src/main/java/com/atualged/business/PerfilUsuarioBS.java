@@ -32,7 +32,7 @@ public class PerfilUsuarioBS {
 	}
 
 	public List<PerfilUsuario> pesquisar(String nome) {
-		if (true) {
+		if (AtualGedUtil.isAdimistrador()) {
 			return pur.findByEscritorioIsNull();
 		} else {
 			if (nome == null || nome.trim().equals("")) {
@@ -45,7 +45,7 @@ public class PerfilUsuarioBS {
 	}
 
 	public List<PerfilUsuario> pesquisarUltimosRegistros() {
-		if (true) {
+		if (AtualGedUtil.isAdimistrador()) {
 			return pur.findByEscritorioIsNull();
 		} else {
 			return pur.findTop10ByEscritorioOrId( AtualGedUtil.getEscritorioTokenRequest(), 2l);

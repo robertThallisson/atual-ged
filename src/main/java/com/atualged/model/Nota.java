@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,13 +30,13 @@ public class Nota implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotNull
+	
 	private Long numero;
-	@NotNull
+	
 	private Long serie;
-	@NotNull
+	
 	private Long tipo;
-	@NotNull
+	
 	private float valorTotal;
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -45,18 +44,18 @@ public class Nota implements Serializable{
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dtSaida;
-	@NotNull
+	
 	private Long tipoOperacao;
-	@NotNull
+	
 	private Long finalidadeOperacao;
-	@NotNull
+	
 	private Long cnpjForn;
-	@NotNull
+	
 	private Long cnpjEmp;
-	@NotNull
+	
 	@Size(min = 2, max = 280)
 	private String xml;
-	@NotNull
+	
 	private Boolean ativo;
 	@OneToOne
 	private Empresa empresa;

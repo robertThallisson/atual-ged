@@ -2,6 +2,7 @@ package com.atualged.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
@@ -34,7 +35,8 @@ import br.com.swconsultoria.nfe.util.XmlNfeUtil;
 public class Testcertificado {
 	public static void main(String[] args) throws NfeException {
 		try {
-			Certificado certificado = certificadoCnpjCpf();
+			Certificado certificado = certificadoArquivo();// certificadoCnpjCpf();
+		//	certificado.setSenha("1234");
 			certificado.setAtivarProperties(true);
 			System.out.println(certificado.getArquivoBytes());
 			System.out.println("Alias Certificado :" + certificado.getNome());
@@ -43,6 +45,8 @@ public class Testcertificado {
 			System.out.println("Validade Certificado :" + certificado.getSenha());
 			System.out.println("Validade Certificado :" + certificado.getCnpjCpf());
 			System.out.println("Validade Certificado :" + certificado.getNome());
+			System.out.println("Validade Certificado :" + certificado.getSslProtocol());
+			
 			// certificado.setSenha("1234");
 			// PARA REGISTRAR O CERTIFICADO NA SESSAO, FAÇA SOMENTE EM PROJETOS EXTERNO
 			// JAVA NFE, CTE E OUTRAS APIS MINHAS JA CONTEM ESTA INICIALIZAÇÃO
@@ -62,10 +66,13 @@ public class Testcertificado {
 				Scanner s = new Scanner(System.in);
 				s.nextLine();
 				System.out.println("# Status: " + retorno.getCStat() + " - " + retorno.getXMotivo());
+				manis(config);
 				//manifestar(config);
-				manifestar(config);
+				
 			} catch (Exception e) {
+
 				System.err.println("# Erro: " + e.getMessage());
+				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -77,7 +84,7 @@ public class Testcertificado {
 		// Certificado certificado =
 		// https://github.com/Samuel-Oliveira/Java_Certificado/wiki
 
-		return ConfiguracoesNfe.criarConfiguracoes(EstadosEnum.GO, AmbienteEnum.HOMOLOGACAO, certificado, "/Schemas");
+		return ConfiguracoesNfe.criarConfiguracoes(EstadosEnum.GO, AmbienteEnum.HOMOLOGACAO, certificado, "C:\\Users\\rober\\Documents\\GitHub\\AtualGed\\src\\main\\java\\com\\atualged\\util\\schemas");
 	}
 
 
@@ -94,6 +101,7 @@ public class Testcertificado {
 //	                retorno = Nfe.distribuicaoDfe(PessoaEnum.JURIDICA, cnpj, ConsultaDFeEnum.CHAVE, chave);
 
 			// Para Consulta Via NSU
+
 			String nsu = "000000000000000";
 			retorno = Nfe.distribuicaoDfe(config, PessoaEnum.JURIDICA, cnpj, ConsultaDFeEnum.NSU, nsu);
 			new Scanner(System.in).nextLine();
@@ -143,7 +151,7 @@ public class Testcertificado {
 			// Informe a chave da Nota a ser Manifestada
 			manifesta.setChave("52190626995215000183550020000013431000007600");
 			// Informe o CNPJ do emitente
-			manifesta.setCnpj("11172182000102");
+			manifesta.setCnpj(config.getCertificado().getCnpjCpf());
 			// Caso o Tipo de manifestação seja OPERAÇÂO Não REALIZADA, Informe o Motivo do
 			// Manifestacao
 			manifesta.setMotivo("DESCONHECIMENTO_DA_OPERACAO");
@@ -175,21 +183,69 @@ public class Testcertificado {
 			System.out.println();
 			System.out.println("# ProcEvento : " + proc);
 
-		} catch (
-
-		Exception e) {
+		} catch (Exception e) {
 			System.err.println();
 			System.err.println("# Erro: " + e.getMessage());
+			e.printStackTrace();
 		}
 	}
+	
+	
+	public void download(ConfiguracoesNfe config) throws IOException, NfeException {
+		 //Informe o CNPJ Do Destinatario (Deve ser o Mesmo do Certificado)
+        String cnpj = "XXX";
+
+        RetDistDFeInt retorno;
+
+        //Para Consulta Via CHAVE
+//            String chave = "35170843283811001202550010046314601229130549";
+//            retorno = Nfe.distribuicaoDfe(PessoaEnum.JURIDICA, cnpj, ConsultaDFeEnum.CHAVE, chave);
+
+        //Para Consulta Via NSU
+        String nsu = "000000000000000";
+        retorno = Nfe.distribuicaoDfe(config, PessoaEnum.JURIDICA, cnpj, ConsultaDFeEnum.NSU, nsu);
+
+        if (StatusEnum.DOC_LOCALIZADO_PARA_DESTINATARIO.getCodigo().equals(retorno.getCStat())) {
+            System.out.println();
+            System.out.println("# Status: " + retorno.getCStat() + " - " + retorno.getXMotivo());
+            System.out.println("# NSU Atual: " + retorno.getUltNSU());
+            System.out.println("# Max NSU: " + retorno.getMaxNSU());
+            System.out.println("# Max NSU: " + retorno.getMaxNSU());
+
+            //Aqui Recebe a Lista De XML (No Maximo 50 por Consulta)
+            List<DocZip> listaDoc = retorno.getLoteDistDFeInt().getDocZip();
+            for (DocZip docZip : listaDoc) {
+                System.out.println();
+                System.out.println("# Schema: " + docZip.getSchema());
+                switch (docZip.getSchema()) {
+                    case "resNFe_v1.01.xsd":
+                        System.out.println("# Este é o XML em resumo, deve ser feito a Manifestação para o Objeter o XML Completo.");
+                        break;
+                    case "procNFe_v4.00.xsd":
+                        System.out.println("# XML Completo.");
+                        break;
+                    case "procEventoNFe_v1.00.xsd":
+                        System.out.println("# XML Evento.");
+                        break;
+                }
+                //Transforma o GZip em XML
+                String xml = XmlNfeUtil.gZipToXml(docZip.getValue());
+                System.out.println("# XML: " + xml);
+            }
+        } else {
+            System.out.println();
+            System.out.println("# Status: " + retorno.getCStat() + " - " + retorno.getXMotivo());
+        }
+	}
+	
 
 	private static Certificado certificadoCnpjCpf() throws CertificadoException {
-		String cnpj = "26995215000183";
+		String cnpj = "37878915000104";
 		return CertificadoService.getCertificadoByCnpjCpf(cnpj);
 
 	}
 	private static Certificado certificadoArquivo() throws Exception {
-		String caminhoCertificado = "D:/JBA.pfx";
+		String caminhoCertificado = "D:\\empresa\\DIVINO TAVARES ME.pfx";
         String senha = "1234";
 
         return CertificadoService.certificadoPfx(caminhoCertificado, senha);
